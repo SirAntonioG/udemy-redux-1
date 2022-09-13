@@ -44,23 +44,28 @@ export const obtenerPokemonesAccion = () => async (dispatch, getState) => {
   }
 };
 
-export const siguientePokemonAccion = () => async (dispatch, getState) => {
-  // primera alternativa
-  const { offset } = getState().pokemones;
-  const siguiente = offset + 20;
+export const siguientePokemonAccion =
+  (numero) => async (dispatch, getState) => {
+    // primera alternativa
+    // const { offset } = getState().pokemones;
+    // const siguiente = offset + 20;
 
-  try {
-    const res = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?offset=${siguiente}&limit=20`
-    );
-    dispatch({
-      type: SIGUIENTE_POKEMONES_EXITO,
-      payload: {
-        array: res.data.results,
-        offset: siguiente,
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+    // segunda alternativa
+    const { offset } = getState().pokemones;
+    const siguiente = offset + numero;
+
+    try {
+      const res = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon?offset=${siguiente}&limit=20`
+      );
+      dispatch({
+        type: SIGUIENTE_POKEMONES_EXITO,
+        payload: {
+          array: res.data.results,
+          offset: siguiente,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };

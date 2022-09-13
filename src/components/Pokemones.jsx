@@ -11,8 +11,8 @@ export const Pokemones = () => {
   return (
     <div>
       Lista de Pokemones
-      <button onClick={() => dispatch(obtenerPokemonesAccion)} >Get Pokemones</button>
-      <button onClick={() => dispatch(siguientePokemonAccion)}>Siguiente</button>
+      <button onClick={() => dispatch(obtenerPokemonesAccion())} >Get Pokemones</button>
+      <button onClick={() => dispatch(siguientePokemonAccion(20))}>Siguiente</button>
       <ul>
         {
           pokemones.map(item => (
